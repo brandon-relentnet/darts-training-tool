@@ -117,7 +117,7 @@ const ThemeSelector = () => {
       
       <div 
         tabIndex={0} 
-        className="z-[1] bg-base-100 shadow-2xl p-6 rounded-box w-96 dropdown-content"
+        className="z-[1] bg-base-100 shadow-2xl p-6 rounded-box w-86 max-w-screen dropdown-content"
       >
         <div className="space-y-4">
           <div className="text-center">
