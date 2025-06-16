@@ -111,15 +111,17 @@ const DartTracker = () => {
   return (
     <div className="min-h-screen">
       {currentView === 'selector' && (
-        <div>
-          <div className="bg-base-100 navbar">
+        <div className="animate-in fade-in duration-300">
+          <div className="bg-base-100 navbar shadow-lg">
             <div className="flex-1">
-              <span className="font-bold text-xl">🎯 Dart Tracker</span>
+              <span className="font-bold text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                🎯 Dart Tracker
+              </span>
             </div>
             <div className="flex-none gap-2">
               <ThemeSelector />
               <button 
-                className="btn btn-ghost"
+                className="btn btn-ghost rounded-xl hover:bg-base-200 transition-all duration-200"
                 onClick={() => setCurrentView('stats')}
               >
                 📊 Stats & Data
@@ -131,27 +133,31 @@ const DartTracker = () => {
       )}
 
       {currentView === 'practice' && currentPhase && (
-        <PhaseScreen
-          phase={currentPhase}
-          onComplete={handlePhaseComplete}
-          onBack={handleBackFromPhase}
-          isTimerVisible={isTimerVisible}
-          onToggleTimer={() => setIsTimerVisible(!isTimerVisible)}
-          currentSession={currentSession}
-          currentPhaseIndex={currentPhaseIndex}
-          totalPhases={currentPractice?.phases.length || 0}
-        />
+        <div className="animate-in slide-in-from-right duration-300">
+          <PhaseScreen
+            phase={currentPhase}
+            onComplete={handlePhaseComplete}
+            onBack={handleBackFromPhase}
+            isTimerVisible={isTimerVisible}
+            onToggleTimer={() => setIsTimerVisible(!isTimerVisible)}
+            currentSession={currentSession}
+            currentPhaseIndex={currentPhaseIndex}
+            totalPhases={currentPractice?.phases.length || 0}
+          />
+        </div>
       )}
 
       {currentView === 'stats' && (
-        <StatsAndData 
-          sessions={sessions} 
-          onBack={() => setCurrentView('selector')}
-          onImport={handleImportData}
-          onClear={handleClearData}
-          userId={userId}
-          setCurrentView={setCurrentView}
-        />
+        <div className="animate-in slide-in-from-left duration-300">
+          <StatsAndData 
+            sessions={sessions} 
+            onBack={() => setCurrentView('selector')}
+            onImport={handleImportData}
+            onClear={handleClearData}
+            userId={userId}
+            setCurrentView={setCurrentView}
+          />
+        </div>
       )}
 
       {/* Progress indicator for practice */}

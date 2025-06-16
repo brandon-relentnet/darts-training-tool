@@ -75,14 +75,14 @@ const PhaseScreen = ({
     : { hits: sessionStats.hits, throws: sessionStats.throws, accuracy: sessionStats.accuracy, label: 'Full Session' };
 
   return (
-    <div className="bg-base-200 p-4 min-h-screen">
-      <div className="space-y-4 mx-auto max-w-md">
+    <div className="bg-base-200 min-h-screen">
+      <div className="space-y-6 mx-auto max-w-lg p-4 pb-20">
         {/* Header */}
-        <div className="bg-base-100 rounded-box navbar">
+        <div className="bg-base-100 rounded-2xl navbar shadow-lg border border-base-300">
           <div className="navbar-start">
-            <button className="btn btn-ghost btn-circle" onClick={onBack}>
+            <button className="btn btn-ghost btn-circle hover:bg-base-200" onClick={onBack}>
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
           </div>
@@ -91,31 +91,39 @@ const PhaseScreen = ({
           </div>
           <div className="navbar-end">
             <button 
-              className="btn btn-ghost btn-sm"
+              className="btn btn-ghost btn-sm rounded-xl"
               onClick={onToggleTimer}
             >
-              {isTimerVisible ? 'Hide Timer' : 'Timer'}
+              {isTimerVisible ? (
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21" />
+                </svg>
+              ) : (
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              )}
             </button>
           </div>
         </div>
 
         {/* Mode Toggle */}
-        <div className="bg-base-100 shadow-xl card">
-          <div className="p-4 card-body">
+        <div className="bg-base-100 shadow-xl card rounded-2xl border border-base-300">
+          <div className="p-6 card-body">
             <div className="flex justify-center items-center gap-4">
-              <span className="font-medium text-sm">Tracking Mode:</span>
+              <span className="font-semibold text-base">Tracking Mode:</span>
               <div className="join">
                 <button 
-                  className={`btn btn-sm join-item ${trackingMode === 'auto' ? 'btn-primary' : 'btn-outline'}`}
+                  className={`btn join-item rounded-l-xl ${trackingMode === 'auto' ? 'btn-primary' : 'btn-outline'}`}
                   onClick={() => setTrackingMode('auto')}
                 >
-                  Auto
+                  🎯 Auto
                 </button>
                 <button 
-                  className={`btn btn-sm join-item ${trackingMode === 'manual' ? 'btn-primary' : 'btn-outline'}`}
+                  className={`btn join-item rounded-r-xl ${trackingMode === 'manual' ? 'btn-primary' : 'btn-outline'}`}
                   onClick={() => setTrackingMode('manual')}
                 >
-                  Manual
+                  ⚙️ Manual
                 </button>
               </div>
             </div>
@@ -123,13 +131,15 @@ const PhaseScreen = ({
         </div>
 
         {/* Phase Info */}
-        <div className="alert alert-info">
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-          </svg>
+        <div className="alert alert-info rounded-2xl shadow-lg border-0">
+          <div className="bg-info/20 p-3 rounded-full">
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+            </svg>
+          </div>
           <div>
-            <div className="font-bold">{phase.description}</div>
-            <div className="text-sm">Suggested: {phase.suggestedThrows} throws</div>
+            <div className="font-bold text-lg">{phase.description}</div>
+            <div className="text-sm font-medium opacity-80">Suggested: {phase.suggestedThrows} throws</div>
           </div>
         </div>
 
@@ -195,14 +205,16 @@ const PhaseScreen = ({
 
         {/* Complete Button */}
         <button 
-          className="btn-block btn btn-primary btn-lg"
+          className="btn-block btn btn-primary btn-lg min-h-16 text-lg font-semibold rounded-2xl"
           onClick={handleComplete}
           disabled={throws === 0}
         >
-          Complete Phase
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-          </svg>
+          <div className="flex items-center gap-3">
+            <span>Complete Phase</span>
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </div>
         </button>
       </div>
     </div>
