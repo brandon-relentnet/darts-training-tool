@@ -3,6 +3,7 @@ import SummaryStats from '../charts/SummaryStats';
 import ProgressChart from '../charts/ProgressChart';
 import PhasePerformanceChart from '../charts/PhasePerformanceChart';
 import DataManager from './DataManager';
+import ThemeSelector from '../ui/ThemeSelector';
 import { calculateChartData, calculatePhaseStats, calculateSessionTotals } from '../../utils/statsUtils';
 
 const StatsAndData = ({ sessions, onBack, onImport, onClear, userId, setCurrentView }) => {
@@ -27,11 +28,12 @@ const StatsAndData = ({ sessions, onBack, onImport, onClear, userId, setCurrentV
           <div className="navbar-center">
             <span className="font-bold text-xl">📊 Stats & Data</span>
           </div>
-          <div className="navbar-end">
+          <div className="navbar-end gap-2">
+            <ThemeSelector />
             <button 
               className="btn btn-ghost btn-circle"
               onClick={() => setIsDarkMode(!isDarkMode)}
-              title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              title={isDarkMode ? 'Switch Charts to Light Mode' : 'Switch Charts to Dark Mode'}
             >
               {isDarkMode ? (
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

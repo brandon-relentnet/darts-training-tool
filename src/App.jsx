@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PracticeSelector from './components/pages/PracticeSelector';
 import PhaseScreen from './components/pages/PhaseScreen';
 import StatsAndData from './components/pages/StatsAndData';
+import ThemeSelector from './components/ui/ThemeSelector';
 import { getUserId } from './utils/dataUtils';
 import { PRACTICE_CONFIGS } from './config/practiceConfigs';
 
@@ -108,14 +109,15 @@ const DartTracker = () => {
   const currentPhase = currentPractice?.phases[currentPhaseIndex];
 
   return (
-    <div className="min-h-screen" data-theme="dark">
+    <div className="min-h-screen">
       {currentView === 'selector' && (
         <div>
           <div className="bg-base-100 navbar">
             <div className="flex-1">
               <span className="font-bold text-xl">🎯 Dart Tracker</span>
             </div>
-            <div className="flex-none">
+            <div className="flex-none gap-2">
+              <ThemeSelector />
               <button 
                 className="btn btn-ghost"
                 onClick={() => setCurrentView('stats')}
