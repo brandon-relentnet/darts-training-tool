@@ -111,21 +111,21 @@ const DartTracker = () => {
   return (
     <div className="min-h-screen">
       {currentView === 'selector' && (
-        <div className="animate-in fade-in duration-300">
-          <div className="bg-base-100 navbar shadow-lg">
+        <div className="animate-in duration-300 fade-in">
+          <div className="bg-base-100 shadow-lg navbar">
             <div className="flex-1">
-              <span className="font-bold text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <span className="bg-clip-text bg-gradient-to-r from-primary to-secondary font-bold text-transparent text-xl">
                 🎯 Dart Tracker
               </span>
             </div>
             <div className="flex-none gap-2">
-              <ThemeSelector />
               <button 
-                className="btn btn-ghost rounded-xl hover:bg-base-200 transition-all duration-200"
+                className="hover:bg-base-200 rounded-xl transition-all duration-200 btn btn-ghost"
                 onClick={() => setCurrentView('stats')}
               >
                 📊 Stats & Data
               </button>
+              <ThemeSelector />
             </div>
           </div>
           <PracticeSelector onSelectPractice={handleSelectPractice} />
@@ -133,7 +133,7 @@ const DartTracker = () => {
       )}
 
       {currentView === 'practice' && currentPhase && (
-        <div className="animate-in slide-in-from-right duration-300">
+        <div className="slide-in-from-right animate-in duration-300">
           <PhaseScreen
             phase={currentPhase}
             onComplete={handlePhaseComplete}
@@ -148,7 +148,7 @@ const DartTracker = () => {
       )}
 
       {currentView === 'stats' && (
-        <div className="animate-in slide-in-from-left duration-300">
+        <div className="slide-in-from-left animate-in duration-300">
           <StatsAndData 
             sessions={sessions} 
             onBack={() => setCurrentView('selector')}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ALL_THEMES } from '../../config/themes';
+import { themeChange } from "theme-change";
 
 const ThemeSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
