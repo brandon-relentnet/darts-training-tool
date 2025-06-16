@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { themeChange } from 'theme-change';
 import { ALL_THEMES } from '../../config/themes';
 
 const ThemeSelector = () => {
@@ -99,11 +98,11 @@ const ThemeSelector = () => {
       <div 
         tabIndex={0} 
         role="button" 
-        className="btn btn-ghost btn-circle tooltip tooltip-bottom"
+        className="tooltip-bottom btn btn-ghost btn-circle tooltip"
         data-tip={`Theme: ${getThemeDisplayName(currentTheme)}`}
       >
-        <div className="w-5 h-5 rounded-full overflow-hidden border-2 border-base-content/20">
-          <div className="w-full h-full flex">
+        <div className="border-2 border-base-content/20 rounded-full w-5 h-5 overflow-hidden">
+          <div className="flex w-full h-full">
             {getThemePreview(currentTheme).map((color, i) => (
               <div 
                 key={i} 
@@ -117,15 +116,15 @@ const ThemeSelector = () => {
       
       <div 
         tabIndex={0} 
-        className="dropdown-content z-[1] p-6 shadow-2xl bg-base-100 rounded-box w-96"
+        className="z-[1] bg-base-100 shadow-2xl p-6 rounded-box w-96 dropdown-content"
       >
         <div className="space-y-4">
           <div className="text-center">
             <h3 className="font-bold text-lg">Choose Theme</h3>
-            <p className="text-sm opacity-70">Current: {getThemeDisplayName(currentTheme)}</p>
+            <p className="opacity-70 text-sm">Current: {getThemeDisplayName(currentTheme)}</p>
           </div>
 
-          <div className="grid grid-cols-6 gap-3">
+          <div className="gap-3 grid grid-cols-6">
             {ALL_THEMES.map(theme => {
               const colors = getThemePreview(theme.value);
               return (
@@ -140,7 +139,7 @@ const ThemeSelector = () => {
                   onClick={() => handleThemeChange(theme.value)}
                   data-tip={theme.name}
                 >
-                  <div className="aspect-square w-full flex flex-col">
+                  <div className="flex flex-col w-full aspect-square">
                     <div className="flex flex-1">
                       {colors.map((color, i) => (
                         <div 
@@ -154,8 +153,8 @@ const ThemeSelector = () => {
                   
                   {/* Active indicator */}
                   {currentTheme === theme.value && (
-                    <div className="absolute top-1 right-1">
-                      <div className="w-3 h-3 bg-primary rounded-full flex items-center justify-center">
+                    <div className="top-1 right-1 absolute">
+                      <div className="flex justify-center items-center bg-primary rounded-full w-3 h-3">
                         <svg className="w-2 h-2 text-primary-content" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
